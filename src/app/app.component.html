@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-8">
+      <div class="game-area">
+        <mat-grid-list class="tick-tack-grid" cols="3">
+          <mat-grid-tile *ngFor="let block of game.blocks; let i = index" (click)="playerClick(i)">
+            <i *ngIf="game.blocks[i].value=='X'">{{ block.value }}</i>
+            <i *ngIf="game.blocks[i].value=='O'" style="color: red">{{ block.value }}</i>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <h3>Score</h3>
+      <table class="table table-bordered">
+        <tbody>
+        <tr>
+          <td>Player 1:</td>
+          <td>{{ game.players[0].score }}</td>
+        </tr>
+
+        <tr style="color: red">
+          <td>Player 2:</td>
+          <td>{{ game.players[1].score }}</td>
+        </tr>
+
+        <tr>
+          <td>Draw:</td>
+          <td>{{ game.draw }}</td>
+        </tr>
+
+        </tbody>
+      </table>
+      <a class="btn btn-danger" (click)="newGame()" href="#">New Game</a>
+      <a class="btn btn-danger" (click)="reset($event)" href="#">Restart</a>
+      <br/>
+      <br/>
+      <h6 *ngIf="game.turn==0">PLAYER 1 Turn!</h6>
+      <h6 *ngIf="game.turn==1" style="color: red">PLAYER 2 Turn!</h6>
+    </div>
+  </div>
+</div>
